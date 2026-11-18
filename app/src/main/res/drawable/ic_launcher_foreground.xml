@@ -1,3 +1,109 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="512" android:viewportHeight="512">
-    <path android:fillColor="#ffffff" android:pathData="M255.99 173.55v100.69c-11.07-6.35-24.73-8.83-39.22-3.76-15.78 5.65-27.91 19.67-30.73 36.15-5.42 32.27 21.9 59.83 54.05 54.77 23.09-3.65 39.46-24.85 39.46-48.29v-116h23.55c12.95 0 23.55-10.6 23.55-23.56 0-12.95-10.6-23.55-23.55-23.55h-23.55C266.6 150 256 160.6 256 173.55z"/>
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- Dark glossy vinyl disc body -->
+    <path android:pathData="M256,256m-148,0a148,148 0,1 1,296 0a148,148 0,1 1,-296 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="404"
+                android:endY="404"
+                android:startX="108"
+                android:startY="108"
+                android:type="linear">
+                <item android:color="#1D2240" android:offset="0" />
+                <item android:color="#0A0D1B" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Subtle vinyl grooves -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M256,256m-124,0a124,124 0,1 1,248 0a124,124 0,1 1,-248 0"
+        android:strokeWidth="2.5"
+        android:strokeColor="#2E94A3B8" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M256,256m-106,0a106,106 0,1 1,212 0a106,106 0,1 1,-212 0"
+        android:strokeWidth="2"
+        android:strokeColor="#2494A3B8" />
+
+    <!-- Outer electric violet to cyan ring -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M256,256m-140,0a140,140 0,1 1,280 0a140,140 0,1 1,-280 0"
+        android:strokeWidth="14">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:endX="396"
+                android:endY="396"
+                android:startX="116"
+                android:startY="116"
+                android:type="linear">
+                <item android:color="#A855F7" android:offset="0" />
+                <item android:color="#6366F1" android:offset="0.5" />
+                <item android:color="#06B6D4" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 5 glowing rounded soundwave bars -->
+    <!-- Bar 1 (leftmost) -->
+    <path android:pathData="M180,228A11,11 0,0 1,202 228L202,284A11,11 0,0 1,180 284Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="191" android:startY="217" android:endX="191" android:endY="295" android:type="linear">
+                <item android:color="#22D3EE" android:offset="0" />
+                <item android:color="#A855F7" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Bar 2 -->
+    <path android:pathData="M212,205A11,11 0,0 1,234 205L234,307A11,11 0,0 1,212 307Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="223" android:startY="194" android:endX="223" android:endY="318" android:type="linear">
+                <item android:color="#22D3EE" android:offset="0" />
+                <item android:color="#A855F7" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Bar 3 (center peak) -->
+    <path android:pathData="M245,178A11,11 0,0 1,267 178L267,334A11,11 0,0 1,245 334Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="256" android:startY="167" android:endX="256" android:endY="345" android:type="linear">
+                <item android:color="#67E8F9" android:offset="0" />
+                <item android:color="#C084FC" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Center bar bright core highlight -->
+    <path
+        android:fillColor="#88FFFFFF"
+        android:pathData="M251,188A5,5 0,0 1,261 188L261,324A5,5 0,0 1,251 324Z" />
+
+    <!-- Bar 4 -->
+    <path android:pathData="M278,210A11,11 0,0 1,300 210L300,302A11,11 0,0 1,278 302Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="289" android:startY="199" android:endX="289" android:endY="313" android:type="linear">
+                <item android:color="#22D3EE" android:offset="0" />
+                <item android:color="#A855F7" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Bar 5 (rightmost) -->
+    <path android:pathData="M310,231A11,11 0,0 1,332 231L332,281A11,11 0,0 1,310 281Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:startX="321" android:startY="220" android:endX="321" android:endY="292" android:type="linear">
+                <item android:color="#22D3EE" android:offset="0" />
+                <item android:color="#A855F7" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
 </vector>

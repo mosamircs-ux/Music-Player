@@ -122,7 +122,7 @@ class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, 
 
     private fun setupTrack(view: View, track: Track) {
         ItemTrackBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             trackFrame.isSelected = selectedKeys.contains(track.hashCode())
             trackTitle.text = track.title
             trackInfo.beGone()

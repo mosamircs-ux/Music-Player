@@ -79,7 +79,7 @@ class GenresAdapter(activity: BaseSimpleActivity, items: ArrayList<Genre>, recyc
 
     private fun setupView(view: View, genre: Genre) {
         ItemGenreBinding.bind(view).apply {
-            root.setupViewBackground(activity)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             genreFrame.isSelected = selectedKeys.contains(genre.hashCode())
             genreTitle.text = if (textToHighlight.isEmpty()) {
                 genre.title

@@ -6,24 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
+    android:background="@drawable/bg_pulsebeat_mini_player"
+    android:elevation="8dp"
+    android:paddingVertical="4dp"
     android:visibility="gone"
     tools:visibility="visible">
 
     <ImageView
         android:id="@+id/current_track_divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/divider_grey"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
         android:importantForAccessibility="no" />
 
     <ImageView
         android:id="@+id/current_track_image"
-        android:layout_width="@dimen/song_image_size"
-        android:layout_height="@dimen/song_image_size"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginTop="@dimen/normal_margin"
-        android:layout_marginEnd="@dimen/normal_margin"
-        android:layout_marginBottom="@dimen/normal_margin" />
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="6dp" />
 
     <org.fossify.musicplayer.views.MarqueeTextView
         android:id="@+id/current_track_label"
@@ -34,21 +38,20 @@
         android:layout_toStartOf="@+id/current_track_play_pause"
         android:layout_toEndOf="@+id/current_track_image"
         android:gravity="center_vertical"
-        android:paddingEnd="@dimen/activity_margin"
+        android:paddingEnd="12dp"
         android:textSize="@dimen/bigger_text_size"
-        tools:text="My Track" />
+        android:textStyle="bold"
+        tools:text="Midnight Pulse" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/current_track_play_pause"
-        android:layout_width="@dimen/smaller_icon_size"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@+id/current_track_image"
-        android:layout_alignBottom="@+id/current_track_image"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/normal_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:paddingStart="@dimen/smaller_margin"
-        android:paddingEnd="@dimen/smaller_margin"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_pulsebeat_play_button"
+        android:padding="9dp"
         android:scaleType="fitCenter"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"

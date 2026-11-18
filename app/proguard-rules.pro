@@ -27,3 +27,7 @@
 -keep public class org.jaudiotagger.** { public protected *; }
 -keepnames class org.jaudiotagger.**
 -dontwarn org.jaudiotagger.**
+
+# Google Mobile Ads (AdMob)
+-keep class com.google.android.gms.ads.** { *; }
+-dontwarn com.google.android.gms.ads.**

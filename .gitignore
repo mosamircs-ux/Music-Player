@@ -8,6 +8,8 @@
 /captures
 keystore.jks
 keystore.properties
+admob.properties
+release_package/
 fastlane/fastlane.json
 fastlane/report.xml
 .kotlin/

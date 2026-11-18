@@ -2,6 +2,7 @@ package org.fossify.musicplayer.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.media3.common.MediaItem
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.ads.AdView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -58,6 +60,7 @@ import org.fossify.musicplayer.extensions.toMediaItem
 import org.fossify.musicplayer.extensions.toTrack
 import org.fossify.musicplayer.extensions.updatePlayPauseIcon
 import org.fossify.musicplayer.fragments.PlaybackSpeedFragment
+import org.fossify.musicplayer.helpers.AdMobHelper
 import org.fossify.musicplayer.helpers.PlaybackSetting
 import org.fossify.musicplayer.helpers.SEEK_INTERVAL_S
 import org.fossify.musicplayer.interfaces.PlaybackSpeedListener
@@ -83,13 +86,15 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     private val scope = CoroutineScope(Dispatchers.Default)
     private var seekJob: Job? = null
     private var seekCount = 0
+    private var bannerAdView: AdView? = null
 
     private val binding by viewBinding(ActivityTrackBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setupEdgeToEdge(padBottomSystem = listOf(binding.nextTrackHolder))
+        setupEdgeToEdge(padBottomSystem = listOf(binding.adBannerContainer))
+        bannerAdView = AdMobHelper.loadAdaptiveBanner(this, binding.adBannerContainer)
         nextTrackPlaceholder =
             resources.getColoredDrawableWithColor(R.drawable.ic_headset, getProperTextColor())
         setupButtons()
@@ -97,9 +102,11 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
 
         binding.apply {
             activityTrackToolbar.setNavigationOnClickListener { finish() }
-            nextTrackHolder.background = getProperBackgroundColor().toDrawable()
+            nextTrackHolder.setBackgroundResource(R.drawable.bg_pulsebeat_card)
             nextTrackHolder.setOnClickListener {
-                startActivity(Intent(applicationContext, QueueActivity::class.java))
+                AdMobHelper.maybeShowInterstitial(this@TrackActivity) {
+                    startActivity(Intent(applicationContext, QueueActivity::class.java))
+                }
             }
 
             isThirdPartyIntent = intent.action == Intent.ACTION_VIEW
@@ -112,7 +119,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
             setupNextTrackInfo(PlaybackService.nextMediaItem)
             activityTrackPlayPause.updatePlayPauseIcon(
                 isPlaying = PlaybackService.isPlaying,
-                color = getProperTextColor()
+                color = Color.WHITE
             )
             updatePlayerState()
         }
@@ -120,6 +127,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
 
     override fun onResume() {
         super.onResume()
+        bannerAdView?.resume()
         updateTextColors(binding.activityTrackHolder)
         binding.activityTrackTitle.setTextColor(getProperTextColor())
         binding.activityTrackArtist.setTextColor(getProperTextColor())
@@ -128,6 +136,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     }
 
     override fun onPause() {
+        bannerAdView?.pause()
         super.onPause()
         cancelProgressUpdate()
     }
@@ -138,6 +147,8 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     }
 
     override fun onDestroy() {
+        bannerAdView?.destroy()
+        bannerAdView = null
         super.onDestroy()
         cancelProgressUpdate()
         if (isThirdPartyIntent && !isChangingConfigurations) {
@@ -197,7 +208,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
         setupPlaybackSettingButton()
         setupSeekbar()
 
-        arrayOf(activityTrackPrevious, activityTrackPlayPause, activityTrackNext).forEach {
+        arrayOf(activityTrackPrevious, activityTrackNext).forEach {
             it.applyColorFilter(getProperTextColor())
         }
     }
@@ -479,7 +490,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     }
 
     private fun updatePlayPause(isPlaying: Boolean) {
-        binding.activityTrackPlayPause.updatePlayPauseIcon(isPlaying, getProperTextColor())
+        binding.activityTrackPlayPause.updatePlayPauseIcon(isPlaying, Color.WHITE)
     }
 
     private fun seekToNext() {

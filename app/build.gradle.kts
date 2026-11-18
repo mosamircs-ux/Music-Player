@@ -15,6 +15,20 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
+val admobPropertiesFile: File = rootProject.file("admob.properties")
+val admobProperties = Properties()
+if (admobPropertiesFile.exists()) {
+    admobProperties.load(FileInputStream(admobPropertiesFile))
+}
+
+val testAdMobAppId = "ca-app-pub-3940256099942544~3347511713"
+val testAdMobBannerId = "ca-app-pub-3940256099942544/6300978111"
+val testAdMobInterstitialId = "ca-app-pub-3940256099942544/1033173712"
+
+val releaseAdMobAppId = admobProperties.getProperty("ADMOB_APP_ID", testAdMobAppId)
+val releaseAdMobBannerId = admobProperties.getProperty("ADMOB_BANNER_ID", testAdMobBannerId)
+val releaseAdMobInterstitialId = admobProperties.getProperty("ADMOB_INTERSTITIAL_ID", testAdMobInterstitialId)
+
 fun hasSigningVars(): Boolean {
     return providers.environmentVariable("SIGNING_KEY_ALIAS").orNull != null
             && providers.environmentVariable("SIGNING_KEY_PASSWORD").orNull != null
@@ -24,7 +38,7 @@ fun hasSigningVars(): Boolean {
 
 base {
     val versionCode = project.property("VERSION_CODE").toString().toInt()
-    archivesName = "musicplayer-$versionCode"
+    archivesName = "pulsebeat-music-$versionCode"
 }
 
 android {
@@ -70,9 +84,15 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
+            manifestPlaceholders["ADMOB_APP_ID"] = testAdMobAppId
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"$testAdMobBannerId\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$testAdMobInterstitialId\"")
         }
         release {
             isMinifyEnabled = true
+            manifestPlaceholders["ADMOB_APP_ID"] = releaseAdMobAppId
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"$releaseAdMobBannerId\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$releaseAdMobInterstitialId\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -115,7 +135,7 @@ android {
         )
     }
 
-    namespace = project.property("APP_ID").toString()
+    namespace = "org.fossify.musicplayer"
 
     lint {
         checkReleaseBuilds = false
@@ -141,6 +161,7 @@ detekt {
 
 dependencies {
     implementation(libs.fossify.commons)
+    implementation(libs.play.services.ads)
     implementation(libs.eventbus)
     implementation(libs.androidx.media)
     implementation(libs.androidx.swiperefreshlayout)

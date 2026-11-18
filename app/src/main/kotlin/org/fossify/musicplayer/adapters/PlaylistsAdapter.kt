@@ -96,7 +96,7 @@ class PlaylistsAdapter(
 
     private fun setupView(view: View, playlist: Playlist) {
         ItemPlaylistBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             playlistFrame.isSelected = selectedKeys.contains(playlist.hashCode())
             playlistTitle.text = if (textToHighlight.isEmpty()) playlist.title else playlist.title.highlightTextPart(textToHighlight, properPrimaryColor)
             playlistTitle.setTextColor(textColor)

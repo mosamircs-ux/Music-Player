@@ -62,7 +62,7 @@ class FoldersAdapter(
 
     private fun setupView(view: View, folder: Folder) {
         ItemFolderBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             folderFrame.isSelected = selectedKeys.contains(folder.hashCode())
             folderTitle.text = if (textToHighlight.isEmpty()) folder.title else folder.title.highlightTextPart(textToHighlight, properPrimaryColor)
             folderTitle.setTextColor(textColor)

@@ -140,7 +140,7 @@ class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var curren
     @SuppressLint("ClickableViewAccessibility")
     private fun setupView(view: View, track: Track, holder: ViewHolder) {
         ItemTrackQueueBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             trackQueueFrame.isSelected = selectedKeys.contains(track.hashCode())
             trackQueueTitle.text = if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(textToHighlight, properPrimaryColor)
 

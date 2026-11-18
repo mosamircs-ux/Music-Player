@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- PulseBeat Music: Modern Midnight Neon Theme Palette -->
+    <color name="pulsebeat_bg">#0B0E1A</color>
+    <color name="pulsebeat_surface">#11162B</color>
+    <color name="pulsebeat_card">#151B34</color>
+    <color name="pulsebeat_nav">#0C1021</color>
+    <color name="pulsebeat_purple">#8B5CF6</color>
+    <color name="pulsebeat_purple_dark">#6D28D9</color>
+    <color name="pulsebeat_cyan">#06B6D4</color>
+    <color name="pulsebeat_text_primary">#F1F5F9</color>
+    <color name="pulsebeat_text_secondary">#94A3B8</color>
+    <color name="pulsebeat_divider">#2B3354</color>
 
+    <!-- Override base defaults from commons -->
+    <color name="color_primary">#8B5CF6</color>
+    <color name="color_primary_dark">#0B0E1A</color>
+    <color name="color_accent">#06B6D4</color>
+    <color name="default_background_color">#0B0E1A</color>
+    <color name="theme_dark_background_color">#0B0E1A</color>
+    <color name="divider_grey">#2B3354</color>
 </resources>

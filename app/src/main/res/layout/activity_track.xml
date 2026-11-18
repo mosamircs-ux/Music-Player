@@ -1,272 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_track_Scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@drawable/bg_pulsebeat_player"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_track_holder"
+    <ScrollView
+        android:id="@+id/activity_track_Scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="HardcodedText">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/activity_track_image"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/top_art_height"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/album"
-            android:src="@drawable/ic_headset"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/activity_track_top_shadow"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/top_shadow_height"
-            android:background="@drawable/gradient_background_flipped"
-            android:contentDescription="@null"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <org.fossify.commons.views.MyTextView
-            android:id="@+id/activity_track_progress_current"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:maxLines="1"
-            android:paddingStart="@dimen/normal_margin"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingEnd="@dimen/medium_margin"
-            android:paddingBottom="@dimen/normal_margin"
-            android:text="00:00"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
-
-        <org.fossify.commons.views.MySeekBar
-            android:id="@+id/activity_track_progressbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_margin"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:layout_marginEnd="@dimen/activity_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingBottom="@dimen/medium_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_image" />
-
-        <ImageView
-            android:id="@+id/activity_track_speed_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="fitEnd"
-            android:src="@drawable/ic_playback_speed_vector"
-            app:layout_constraintBottom_toBottomOf="@+id/activity_track_speed"
-            app:layout_constraintEnd_toStartOf="@+id/activity_track_speed"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
-
-        <org.fossify.commons.views.MyTextView
-            android:id="@+id/activity_track_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingBottom="@dimen/normal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/activity_track_speed_icon"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar"
-            tools:ignore="RtlHardcoded"
-            tools:text="1x" />
-
-        <ImageView
-            android:id="@+id/activity_track_speed_click_area"
-            android:layout_width="@dimen/bottom_bar_height"
-            android:layout_height="@dimen/bottom_bar_height"
-            android:layout_marginStart="@dimen/activity_margin"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
-
-        <org.fossify.commons.views.MyTextView
-            android:id="@+id/activity_track_progress_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:maxLines="1"
-            android:paddingStart="@dimen/medium_margin"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingEnd="@dimen/normal_margin"
-            android:paddingBottom="@dimen/normal_margin"
-            android:text="00:00"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
-
-        <org.fossify.musicplayer.views.MarqueeTextView
-            android:id="@+id/activity_track_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="800dp"
-            android:fadingEdge="horizontal"
-            android:gravity="center"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:scrollHorizontally="true"
-            android:textSize="@dimen/extra_big_text_size"
-            app:layout_constraintBottom_toTopOf="@+id/activity_track_artist"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_progress_current"
-            tools:text="Track title" />
-
-        <org.fossify.musicplayer.views.MarqueeTextView
-            android:id="@+id/activity_track_artist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="800dp"
-            android:alpha="0.8"
-            android:fadingEdge="horizontal"
-            android:gravity="center"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:scrollHorizontally="true"
-            android:textSize="@dimen/actionbar_text_size"
-            app:layout_constraintBottom_toTopOf="@+id/activity_track_toggle_shuffle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_title"
-            tools:text="Track artist" />
-
-        <ImageView
-            android:id="@+id/activity_track_toggle_shuffle"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/smaller_icon_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/enable_shuffle"
-            android:padding="@dimen/tiny_margin"
-            android:src="@drawable/ic_shuffle_vector"
-            app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
-            app:layout_constraintEnd_toStartOf="@+id/activity_track_previous"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_artist" />
-
-        <ImageView
-            android:id="@+id/activity_track_previous"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/smaller_icon_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/previous"
-            android:padding="@dimen/tiny_margin"
-            android:src="@drawable/ic_previous_vector"
-            app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
-            app:layout_constraintEnd_toStartOf="@+id/activity_track_play_pause"
-            app:layout_constraintStart_toEndOf="@+id/activity_track_toggle_shuffle"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_artist" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/activity_track_play_pause"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/smaller_icon_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/playpause"
-            android:padding="@dimen/tiny_margin"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
-            app:layout_constraintEnd_toStartOf="@+id/activity_track_next"
-            app:layout_constraintStart_toEndOf="@+id/activity_track_previous"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_artist"
-            app:lottie_autoPlay="false"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/playpause" />
-
-        <ImageView
-            android:id="@+id/activity_track_next"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/smaller_icon_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/next"
-            android:padding="@dimen/tiny_margin"
-            android:src="@drawable/ic_next_vector"
-            app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
-            app:layout_constraintEnd_toStartOf="@+id/activity_track_playback_setting"
-            app:layout_constraintStart_toEndOf="@+id/activity_track_play_pause"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_artist" />
-
-        <ImageView
-            android:id="@+id/activity_track_playback_setting"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/smaller_icon_size"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/repeat_song"
-            android:padding="@dimen/tiny_margin"
-            android:src="@drawable/ic_repeat_playlist_vector"
-            app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/activity_track_next"
-            app:layout_constraintTop_toBottomOf="@+id/activity_track_artist" />
-
-        <RelativeLayout
-            android:id="@+id/next_track_holder"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_track_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            tools:ignore="HardcodedText">
 
             <ImageView
-                android:id="@+id/next_track_divider"
+                android:id="@+id/activity_track_image"
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/divider_grey"
-                android:importantForAccessibility="no" />
+                android:layout_height="@dimen/top_art_height"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/album"
+                android:padding="28dp"
+                android:src="@drawable/ic_headset"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/next_track_image"
-                android:layout_width="@dimen/song_image_size"
-                android:layout_height="@dimen/song_image_size"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin" />
+                android:id="@+id/activity_track_top_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/top_shadow_height"
+                android:background="@drawable/gradient_background_flipped"
+                android:contentDescription="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <org.fossify.commons.views.MyTextView
-                android:id="@+id/next_track_label"
+                android:id="@+id/activity_track_progress_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:maxLines="1"
+                android:paddingStart="@dimen/activity_margin"
+                android:paddingTop="@dimen/normal_margin"
+                android:paddingEnd="@dimen/medium_margin"
+                android:paddingBottom="@dimen/normal_margin"
+                android:text="00:00"
+                android:textSize="@dimen/normal_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
+
+            <org.fossify.commons.views.MySeekBar
+                android:id="@+id/activity_track_progressbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/activity_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="@dimen/normal_margin"
+                android:paddingBottom="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_image" />
+
+            <ImageView
+                android:id="@+id/activity_track_speed_click_area"
+                android:layout_width="96dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_pulsebeat_chip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
+
+            <ImageView
+                android:id="@+id/activity_track_speed_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="6dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_playback_speed_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_speed_click_area"
+                app:layout_constraintEnd_toStartOf="@+id/activity_track_speed"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/activity_track_speed_click_area"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_speed_click_area" />
+
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/activity_track_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_speed_click_area"
+                app:layout_constraintEnd_toEndOf="@+id/activity_track_speed_click_area"
+                app:layout_constraintStart_toEndOf="@+id/activity_track_speed_icon"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_speed_click_area"
+                tools:ignore="RtlHardcoded"
+                tools:text="1x" />
+
+            <org.fossify.commons.views.MyTextView
+                android:id="@+id/activity_track_progress_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:maxLines="1"
+                android:paddingStart="@dimen/medium_margin"
+                android:paddingTop="@dimen/normal_margin"
+                android:paddingEnd="@dimen/activity_margin"
+                android:paddingBottom="@dimen/normal_margin"
+                android:text="00:00"
+                android:textSize="@dimen/normal_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_progressbar" />
+
+            <org.fossify.musicplayer.views.MarqueeTextView
+                android:id="@+id/activity_track_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:width="800dp"
+                android:fadingEdge="horizontal"
+                android:gravity="center"
+                android:paddingStart="@dimen/activity_margin"
+                android:paddingEnd="@dimen/activity_margin"
+                android:scrollHorizontally="true"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/activity_track_artist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_progress_current"
+                tools:text="Track title" />
+
+            <org.fossify.musicplayer.views.MarqueeTextView
+                android:id="@+id/activity_track_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:width="800dp"
+                android:alpha="0.78"
+                android:fadingEdge="horizontal"
+                android:gravity="center"
+                android:paddingStart="@dimen/activity_margin"
+                android:paddingEnd="@dimen/activity_margin"
+                android:scrollHorizontally="true"
+                android:textSize="@dimen/bigger_text_size"
+                app:layout_constraintBottom_toTopOf="@+id/activity_track_play_pause"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_title"
+                tools:text="Track artist" />
+
+            <ImageView
+                android:id="@+id/activity_track_toggle_shuffle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/enable_shuffle"
+                android:padding="8dp"
+                android:src="@drawable/ic_shuffle_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_play_pause"
+                app:layout_constraintEnd_toStartOf="@+id/activity_track_previous"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_play_pause" />
+
+            <ImageView
+                android:id="@+id/activity_track_previous"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/previous"
+                android:padding="6dp"
+                android:src="@drawable/ic_previous_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_play_pause"
+                app:layout_constraintEnd_toStartOf="@+id/activity_track_play_pause"
+                app:layout_constraintStart_toEndOf="@+id/activity_track_toggle_shuffle"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_play_pause" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/activity_track_play_pause"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/bg_pulsebeat_play_button"
+                android:contentDescription="@string/playpause"
+                android:elevation="8dp"
+                android:padding="15dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/next_track_holder"
+                app:layout_constraintEnd_toStartOf="@+id/activity_track_next"
+                app:layout_constraintStart_toEndOf="@+id/activity_track_previous"
+                app:layout_constraintTop_toBottomOf="@+id/activity_track_artist"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/playpause" />
+
+            <ImageView
+                android:id="@+id/activity_track_next"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/next"
+                android:padding="6dp"
+                android:src="@drawable/ic_next_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_play_pause"
+                app:layout_constraintEnd_toStartOf="@+id/activity_track_playback_setting"
+                app:layout_constraintStart_toEndOf="@+id/activity_track_play_pause"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_play_pause" />
+
+            <ImageView
+                android:id="@+id/activity_track_playback_setting"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/repeat_song"
+                android:padding="8dp"
+                android:src="@drawable/ic_repeat_playlist_vector"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_track_play_pause"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/activity_track_next"
+                app:layout_constraintTop_toTopOf="@+id/activity_track_play_pause" />
+
+            <RelativeLayout
+                android:id="@+id/next_track_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/next_track_image"
-                android:layout_alignBottom="@+id/next_track_image"
-                android:layout_toEndOf="@+id/next_track_image"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingEnd="@dimen/normal_margin"
-                android:textSize="@dimen/bigger_text_size"
-                tools:text="Next Track: My Track" />
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_pulsebeat_card"
+                android:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/next_track_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@android:color/transparent"
+                    android:importantForAccessibility="no" />
 
-        <org.fossify.commons.views.MyAppBarLayout
-            android:id="@+id/activity_track_appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:elevation="0dp"
-            app:elevation="0dp"
-            app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:id="@+id/next_track_image"
+                    android:layout_width="@dimen/song_image_size"
+                    android:layout_height="@dimen/song_image_size"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/normal_margin" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/activity_track_toolbar"
+                <org.fossify.commons.views.MyTextView
+                    android:id="@+id/next_track_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/next_track_image"
+                    android:layout_alignBottom="@+id/next_track_image"
+                    android:layout_toEndOf="@+id/next_track_image"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingEnd="@dimen/normal_margin"
+                    android:textSize="@dimen/bigger_text_size"
+                    tools:text="Next Track: My Track" />
+
+            </RelativeLayout>
+
+            <org.fossify.commons.views.MyAppBarLayout
+                android:id="@+id/activity_track_appbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:navigationIcon="@drawable/ic_arrow_left_vector" />
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                app:elevation="0dp"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </org.fossify.commons.views.MyAppBarLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/activity_track_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:navigationIcon="@drawable/ic_arrow_left_vector" />
+
+            </org.fossify.commons.views.MyAppBarLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/ad_banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pulsebeat_nav"
+        android:visibility="gone" />
+</LinearLayout>

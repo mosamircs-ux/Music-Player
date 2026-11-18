@@ -15,9 +15,9 @@ const val PLAYLIST = "playlist"
 const val FOLDER = "folder"
 const val GENRE = "genre"
 
-const val PATH = "org.fossify.musicplayer.action."
+const val PATH = "com.pulsebeat.musicplayer.action."
 
-const val EXTRA_OPEN_PLAYER = "org.fossify.musicplayer.OPEN_PLAYER"
+const val EXTRA_OPEN_PLAYER = "com.pulsebeat.musicplayer.OPEN_PLAYER"
 val artworkUri = "content://media/external/audio/albumart".toUri()
 
 const val PREVIOUS = PATH + "PREVIOUS"
@@ -121,6 +121,6 @@ const val M3U_HEADER = "#EXTM3U"
 const val M3U_ENTRY = "#EXTINF:"
 const val M3U_DURATION_SEPARATOR = ","
 
-const val REPOSITORY_NAME = "Music-Player"
+const val REPOSITORY_NAME = "PulseBeat-Music"
 
 fun getPermissionToRequest() = if (isTiramisuPlus()) PERMISSION_READ_MEDIA_AUDIO else PERMISSION_WRITE_STORAGE

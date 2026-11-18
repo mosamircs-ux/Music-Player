@@ -27,7 +27,7 @@ class CurrentTrackBar(context: Context, attributeSet: AttributeSet) : RelativeLa
     }
 
     fun updateColors() {
-        background = context.getProperBackgroundColor().toDrawable()
+        setBackgroundResource(R.drawable.bg_pulsebeat_mini_player)
         binding.currentTrackLabel.setTextColor(context.getProperTextColor())
     }
 
@@ -65,6 +65,6 @@ class CurrentTrackBar(context: Context, attributeSet: AttributeSet) : RelativeLa
     }
 
     fun updateTrackState(isPlaying: Boolean) {
-        binding.currentTrackPlayPause.updatePlayPauseIcon(isPlaying, context.getProperTextColor())
+        binding.currentTrackPlayPause.updatePlayPauseIcon(isPlaying, android.graphics.Color.WHITE)
     }
 }

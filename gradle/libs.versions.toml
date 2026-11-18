@@ -23,6 +23,8 @@ media3 = "1.11.1"
 room = "2.8.5"
 #Fossify
 commons = "7.1.3"
+#AdMob
+play-services-ads = "23.6.0"
 #Gradle
 gradlePlugins-agp = "9.5.1"
 #build
@@ -50,6 +52,7 @@ fossify-commons = { module = "org.fossify:commons", version.ref = "commons" }
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #Helpers
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "play-services-ads" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 jaudiotagger = { module = "net.jthink:jaudiotagger", version.ref = "jaudiotagger" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }

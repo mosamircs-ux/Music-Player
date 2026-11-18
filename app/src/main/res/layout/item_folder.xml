@@ -5,11 +5,15 @@
     android:id="@+id/folder_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/tiny_margin"
-    android:paddingStart="@dimen/medium_margin"
-    android:paddingTop="@dimen/activity_margin"
-    android:paddingEnd="@dimen/activity_margin"
-    android:paddingBottom="@dimen/activity_margin">
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_pulsebeat_list_card"
+    android:paddingStart="14dp"
+    android:paddingTop="14dp"
+    android:paddingEnd="14dp"
+    android:paddingBottom="14dp">
 
     <org.fossify.commons.views.MyTextView
         android:id="@+id/folder_title"

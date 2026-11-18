@@ -135,7 +135,7 @@ class AlbumsTracksAdapter(
 
     private fun setupAlbum(view: View, album: Album) {
         ItemAlbumBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             albumFrame.isSelected = selectedKeys.contains(album.hashCode())
             albumTitle.text = album.title
             albumTitle.setTextColor(textColor)
@@ -150,7 +150,7 @@ class AlbumsTracksAdapter(
 
     private fun setupTrack(view: View, track: Track) {
         ItemTrackBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             trackFrame.isSelected = selectedKeys.contains(track.hashCode())
             trackTitle.text = track.title
             trackTitle.setTextColor(textColor)

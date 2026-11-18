@@ -79,7 +79,7 @@ class AlbumsAdapter(activity: BaseSimpleActivity, items: ArrayList<Album>, recyc
 
     private fun setupView(view: View, album: Album) {
         ItemAlbumBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             albumFrame.isSelected = selectedKeys.contains(album.hashCode())
             albumTitle.text = if (textToHighlight.isEmpty()) album.title else album.title.highlightTextPart(textToHighlight, properPrimaryColor)
             albumTitle.setTextColor(textColor)

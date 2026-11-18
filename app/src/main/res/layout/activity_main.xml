@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pulsebeat_bg">
 
     <org.fossify.commons.views.MySearchMenu
         android:id="@+id/main_menu"
@@ -15,6 +16,7 @@
         android:id="@+id/main_nested_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/pulsebeat_bg"
         android:fillViewport="true"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -22,7 +24,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_holder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/pulsebeat_bg">
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/loading_progress_bar"
@@ -32,17 +35,20 @@
                 android:indeterminate="true"
                 android:visibility="gone"
                 app:hideAnimationBehavior="outward"
+                app:indicatorColor="@color/pulsebeat_cyan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:showAnimationBehavior="inward"
                 app:showDelay="250"
+                app:trackColor="@color/pulsebeat_surface"
                 tools:visibility="visible" />
 
             <org.fossify.commons.views.MyViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:paddingTop="6dp"
                 app:layout_constraintBottom_toTopOf="@+id/current_track_bar"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,23 +57,40 @@
                 layout="@layout/view_current_track_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/main_tabs_holder" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/main_tabs_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/bg_pulsebeat_bottom_nav"
+                app:layout_constraintBottom_toTopOf="@+id/ad_banner_container"
                 app:tabIndicator="@null"
                 app:tabMinWidth="150dp"
                 app:tabRippleColor="@null" />
+
+            <FrameLayout
+                android:id="@+id/ad_banner_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/pulsebeat_nav"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sleep_timer_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/default_background_color"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_pulsebeat_card"
                 android:clickable="true"
+                android:elevation="6dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/current_track_bar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +100,7 @@
                     android:id="@+id/sleep_timer_divider_top"
                     android:layout_width="0dp"
                     android:layout_height="1px"
-                    android:background="@color/divider_grey"
+                    android:background="@android:color/transparent"
                     app:layout_constraintBottom_toTopOf="@+id/sleep_timer_stop"
                     app:layout_constraintEnd_toEndOf="@+id/sleep_timer_stop"
                     app:layout_constraintStart_toStartOf="@+id/sleep_timer_label" />
@@ -86,7 +109,7 @@
                     android:id="@+id/sleep_timer_divider_start"
                     android:layout_width="1px"
                     android:layout_height="0dp"
-                    android:background="@color/divider_grey"
+                    android:background="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="@+id/sleep_timer_stop"
                     app:layout_constraintStart_toStartOf="@+id/sleep_timer_label"
                     app:layout_constraintTop_toTopOf="@+id/sleep_timer_stop" />

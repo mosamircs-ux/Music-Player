@@ -81,7 +81,7 @@ class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, rec
 
     private fun setupView(view: View, artist: Artist) {
         ItemArtistBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             artistFrame.isSelected = selectedKeys.contains(artist.hashCode())
             artistTitle.text = if (textToHighlight.isEmpty()) artist.title else artist.title.highlightTextPart(textToHighlight, properPrimaryColor)
             artistTitle.setTextColor(textColor)

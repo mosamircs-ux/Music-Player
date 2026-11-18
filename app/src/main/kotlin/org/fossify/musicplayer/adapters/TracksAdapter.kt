@@ -181,7 +181,7 @@ class TracksAdapter(
     @SuppressLint("ClickableViewAccessibility")
     private fun setupView(view: View, track: Track, holder: ViewHolder) {
         ItemTrackBinding.bind(view).apply {
-            root.setupViewBackground(context)
+            root.setBackgroundResource(R.drawable.bg_pulsebeat_list_card)
             trackFrame.isSelected = selectedKeys.contains(track.hashCode())
             trackTitle.text = if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(textToHighlight, properPrimaryColor)
             trackInfo.text = if (textToHighlight.isEmpty()) {

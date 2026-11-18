@@ -30,6 +30,7 @@ import org.fossify.musicplayer.helpers.*
 import org.fossify.musicplayer.helpers.M3uImporter.ImportResult
 import org.fossify.musicplayer.models.Events
 import org.fossify.musicplayer.playback.CustomCommands
+import com.google.android.gms.ads.AdView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -41,6 +42,7 @@ class MainActivity : SimpleMusicActivity() {
     private var bus: EventBus? = null
     private var storedShowTabs = 0
     private var storedExcludedFolders = 0
+    private var bannerAdView: AdView? = null
 
     override var isSearchBarEnabled = true
 
@@ -49,12 +51,12 @@ class MainActivity : SimpleMusicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        appLaunched(BuildConfig.APPLICATION_ID)
+        initPulseBeatAppState()
         setupOptionsMenu()
         refreshMenuItems()
         setupEdgeToEdge(
             padBottomImeAndSystem = buildList {
-                add(binding.mainTabsHolder)
+                add(binding.adBannerContainer)
                 if (getVisibleTabs().size == 1) {
                     add(binding.currentTrackBar.root)
                 }
@@ -63,6 +65,7 @@ class MainActivity : SimpleMusicActivity() {
         storeStateVariables()
         setupTabs()
         setupCurrentTrackBar(binding.currentTrackBar.root)
+        bannerAdView = AdMobHelper.loadAdaptiveBanner(this, binding.adBannerContainer)
 
         handlePermission(getPermissionToRequest()) {
             if (it) {
@@ -92,10 +95,11 @@ class MainActivity : SimpleMusicActivity() {
         setupTabColors()
         val properTextColor = getProperTextColor()
         val properPrimaryColor = getProperPrimaryColor()
-        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
+        binding.sleepTimerHolder.setBackgroundResource(R.drawable.bg_pulsebeat_card)
         binding.sleepTimerStop.applyColorFilter(properTextColor)
         binding.loadingProgressBar.setIndicatorColor(properPrimaryColor)
         binding.loadingProgressBar.trackColor = properPrimaryColor.adjustAlpha(LOWER_ALPHA)
+        bannerAdView?.resume()
 
         getAllFragments().forEach {
             it.setupColors(properTextColor, properPrimaryColor)
@@ -113,12 +117,15 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     override fun onPause() {
+        bannerAdView?.pause()
         super.onPause()
         storeStateVariables()
         config.lastUsedViewPagerPage = binding.viewPager.currentItem
     }
 
     override fun onDestroy() {
+        bannerAdView?.destroy()
+        bannerAdView = null
         super.onDestroy()
         bus?.unregister(this)
     }
@@ -139,8 +146,6 @@ class MainActivity : SimpleMusicActivity() {
             findItem(R.id.create_new_playlist).isVisible = isPlaylistFragment
             findItem(R.id.create_playlist_from_folder).isVisible = isPlaylistFragment
             findItem(R.id.import_playlist).isVisible = isPlaylistFragment
-            findItem(R.id.more_apps_from_us).isVisible =
-                resources.getBoolean(org.fossify.commons.R.bool.is_google_play_build)
         }
     }
 
@@ -168,7 +173,6 @@ class MainActivity : SimpleMusicActivity() {
                 R.id.create_playlist_from_folder -> createPlaylistFromFolder()
                 R.id.import_playlist -> tryImportPlaylist()
                 R.id.equalizer -> launchEqualizer()
-                R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
@@ -179,6 +183,14 @@ class MainActivity : SimpleMusicActivity() {
 
     private fun updateMenuColors() {
         binding.mainMenu.updateColors()
+    }
+
+    private fun initPulseBeatAppState() {
+        baseConfig.internalStoragePath = getInternalStoragePath()
+        updateSDCardPath()
+        baseConfig.appId = BuildConfig.APPLICATION_ID
+        baseConfig.wasOrangeIconChecked = true
+        baseConfig.appRunCount++
     }
 
     private fun storeStateVariables() {
@@ -284,8 +296,7 @@ class MainActivity : SimpleMusicActivity() {
             updateBottomTabItemColors(inactiveView, false)
         }
 
-        val bottomBarColor = getBottomNavigationBackgroundColor()
-        binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
+        binding.mainTabsHolder.setBackgroundResource(R.drawable.bg_pulsebeat_bottom_nav)
     }
 
     private fun getInactiveTabIndexes(activeIndex: Int) = (0 until tabsList.size).filter { it != activeIndex }
@@ -526,12 +537,16 @@ class MainActivity : SimpleMusicActivity() {
 
     private fun launchEqualizer() {
         hideKeyboard()
-        startActivity(Intent(applicationContext, EqualizerActivity::class.java))
+        AdMobHelper.maybeShowInterstitial(this) {
+            startActivity(Intent(applicationContext, EqualizerActivity::class.java))
+        }
     }
 
     private fun launchSettings() {
         hideKeyboard()
-        startActivity(Intent(applicationContext, SettingsActivity::class.java))
+        AdMobHelper.maybeShowInterstitial(this) {
+            startActivity(Intent(applicationContext, SettingsActivity::class.java))
+        }
     }
 
     private fun launchAbout() {
